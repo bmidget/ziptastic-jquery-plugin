@@ -24,6 +24,11 @@
 	
 
     $('#zip').change(function() {
+		if ($(this).val().match(/^\d{5}$/) == null) {
+			// This isn't a real zip, so do nothing
+			return;
+		}
+
 		var client = new XMLHttpRequest();
 		client.open("GET", "http://localhost?zip=" + this.value, true);
 		client.onreadystatechange = function() {
